@@ -1,3 +1,4 @@
+# forms.py
 from django import forms
 from .models import Task
 
@@ -6,5 +7,8 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ['title']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter a task'}),
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter a new task...',
+            }),
         }
