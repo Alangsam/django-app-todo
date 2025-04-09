@@ -17,9 +17,52 @@
           <h1 class="mb-4 text-center">📝 My To-Do List</h1>
 
           <!-- Task Form -->
-          <form method="post" class="mb-4 d-flex">
-            {% csrf_token %} {{ form.title }}
-            <button type="submit" class="btn btn-primary ms-2">Add</button>
+          <form method="post" class="mb-4">
+            {% csrf_token %}
+
+            <div class="mb-3">{{ form.title }}</div>
+
+            <div class="mb-3">
+              <label class="form-label d-block">Urgency</label>
+              <!-- prettier-ignore -->
+              <div class="btn-group" role="group">
+                {% for value, label in form.fields.urgency.choices %}
+                <input
+                    type="radio"
+                    class="btn-check"
+                    name="urgency"
+                    id="urgency_{{ forloop.counter }}"
+                    value="{{ value }}"
+                    {% if form.urgency.value == value %}checked{% endif %}
+                    onclick="console.log('Selected urgency:', this.value)"
+                    autocomplete="off"
+                >
+                <label
+                    class="btn btn-outline-primary {% if form.urgency.value == value %}active{% endif %}"
+                    for="urgency_{{ forloop.counter }}"
+                >
+                    {{ label }}
+                </label>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="mb-3 form-check form-switch">
+              {{ form.is_recurring }}
+              <label
+                class="form-check-label"
+                for="{{ form.is_recurring.id_for_label }}"
+              >
+                Recurring?
+              </label>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Frequency</label>
+              {{ form.recurring_frequency }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Task</button>
           </form>
 
           <!-- Task List -->
@@ -30,20 +73,12 @@
             >
               <!-- Toggle button & task title -->
               <div class="d-flex align-items-center">
-                <form method="post" action="{% url 'toggle_task' task.id %}">
-                  {% csrf_token %}
-                  <button
-                    type="submit"
-                    class="btn btn-sm {% if task.completed %}btn-success{% else %}btn-outline-secondary{% endif %} me-2"
-                  >
-                    {% if task.completed %}✔{% else %}◻{% endif %}
-                  </button>
-                </form>
-                <span
-                  class="{% if task.completed %}text-decoration-line-through text-muted{% endif %}"
+                <a
+                  href="{% url 'task_detail' task.id %}"
+                  class="{% if task.completed %}text-decoration-line-through text-muted{% endif %} text-decoration-none"
                 >
                   {{ task.title }}
-                </span>
+                </a>
               </div>
 
               <!-- Delete button -->
@@ -61,5 +96,20 @@
         </div>
       </div>
     </div>
+    <script>
+      const recurringCheckbox = document.getElementById("id_is_recurring");
+      const frequencySelect = document.getElementById("id_recurring_frequency");
+
+      function toggleFrequency() {
+        if (recurringCheckbox.checked) {
+          frequencySelect.closest(".mb-3").style.display = "block";
+        } else {
+          frequencySelect.closest(".mb-3").style.display = "none";
+        }
+      }
+
+      recurringCheckbox.addEventListener("change", toggleFrequency);
+      window.addEventListener("DOMContentLoaded", toggleFrequency);
+    </script>
   </body>
 </html>
