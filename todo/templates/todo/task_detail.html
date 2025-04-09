@@ -36,25 +36,22 @@
               <h5 class="modal-title" id="taskDetailLabel">{{ task.title }}</h5>
               <a href="/" class="btn-close" aria-label="Close"></a>
             </div>
-
+            <!-- prettier-ignore -->
             <div class="modal-body">
               <p>
-                <strong>Created:</strong> {{ task.created_at|date:"M d, Y - H:i"
-                }}
+                <strong>Created:</strong> {{ task.created_at|date:"M d, Y - H:i" }}
               </p>
               <p><strong>Urgency:</strong> {{ task.get_urgency_display }}</p>
               <p>
-                <strong>Recurring:</strong> {{ task.is_recurring|yesno:"Yes,No"
-                }}
+                <strong>Recurring:</strong> {{ task.is_recurring|yesno:"Yes,No" }}
               </p>
               {% if task.is_recurring %}
+              <!-- prettier-ignore -->
               <p>
-                <strong>Frequency:</strong> {{
-                task.get_recurring_frequency_display }}
+                <strong>Frequency:</strong> {{task.get_recurring_frequency_display }}
               </p>
               <p>
-                <strong>Next Due Date:</strong> {{ task.next_due_date|date:"M d,
-                Y" }}
+                <strong>Next Due Date:</strong> {{ task.next_due_date|date:"M d, Y" }}
               </p>
               {% endif %}
             </div>

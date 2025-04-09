@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import timedelta, datetime
+from django.utils import timezone
 
 class Task(models.Model):
     URGENCY_CHOICES = [
@@ -25,7 +26,7 @@ class Task(models.Model):
         if not self.is_recurring or not self.recurring_frequency:
             return None
         base = self.created_at
-        now = datetime.now()
+        now = timezone.now()
         delta = {
             'daily': timedelta(days=1),
             'weekly': timedelta(weeks=1),
