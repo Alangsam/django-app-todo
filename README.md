@@ -38,15 +38,35 @@ python manage.py runserver
 Then visit: http://127.0.0.1:8000/
 
 ## 📁 Project Structure
+```text
 todo_project/
 ├── manage.py
-├── todo_project/
+├── requirements.txt
+├── README.md
+│
+├── todo_project/               # Project-level settings
+│   ├── __init__.py
 │   ├── settings.py
-│   └── urls.py
-├── todo/
-│   ├── models.py
-│   ├── views.py
 │   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+│
+├── todo/                       # Main app
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
 │   ├── forms.py
-│   └── templates/
-└── static/
+│   ├── models.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── templates/
+│   │   └── todo/
+│   │       └── task_list.html
+│   └── static/
+│       └── todo/
+│           ├── css/
+│           └── js/
+│
+├── db.sqlite3                  # SQLite database
+└── venv/                       # Python virtual environment
+
