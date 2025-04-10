@@ -9,6 +9,7 @@ A simple, responsive to-do list app built with Django and Bootstrap 5.
 - Add new tasks
 - Mark tasks as complete/incomplete
 - Delete tasks
+- Store nested subtasks
 - Mobile-friendly UI using Bootstrap
 
 ---
@@ -24,7 +25,7 @@ A simple, responsive to-do list app built with Django and Bootstrap 5.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/django-todo-app.git
+git clone https://github.com/Alangsam/django-app-todo.git
 cd django-todo-app
 python -m venv venv
 source venv/bin/activate      # On Windows: venv\Scripts\activate
