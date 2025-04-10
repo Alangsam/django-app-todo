@@ -9,6 +9,7 @@ A simple, responsive to-do list app built with Django and Bootstrap 5.
 - Add new tasks
 - Mark tasks as complete/incomplete
 - Delete tasks
+- Store nested subtasks
 - Mobile-friendly UI using Bootstrap
 
 ---
