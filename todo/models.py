@@ -1,8 +1,12 @@
 from django.db import models
 from datetime import timedelta, datetime
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Task(models.Model):
+
+    
+
     URGENCY_CHOICES = [
         ('low', 'Low'),
         ('medium', 'Medium'),
@@ -21,6 +25,7 @@ class Task(models.Model):
     is_recurring = models.BooleanField(default=False)
     recurring_frequency = models.CharField(max_length=10, choices=FREQUENCY_CHOICES, blank=True, null=True)
     urgency = models.CharField(max_length=10, choices=URGENCY_CHOICES, default='low')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def next_due_date(self):
         if not self.is_recurring or not self.recurring_frequency:
