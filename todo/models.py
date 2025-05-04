@@ -26,6 +26,8 @@ class Task(models.Model):
     recurring_frequency = models.CharField(max_length=10, choices=FREQUENCY_CHOICES, blank=True, null=True)
     urgency = models.CharField(max_length=10, choices=URGENCY_CHOICES, default='low')
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    completed = models.BooleanField(default=False)
+
 
     def next_due_date(self):
         if not self.is_recurring or not self.recurring_frequency:
