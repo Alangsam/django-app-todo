@@ -77,35 +77,66 @@
             <button type="submit" class="btn btn-primary">Add Task</button>
           </form>
 
-          <!-- Task List -->
-          <ul class="list-group shadow-sm">
-            {% for task in tasks %}
+          <!-- Incomplete Tasks -->
+          <h4 class="mt-4">Incomplete Tasks</h4>
+          <ul class="list-group shadow-sm mb-5">
+            {% for task in incomplete_tasks %}
             <li
               class="list-group-item d-flex justify-content-between align-items-center"
             >
-              <!-- Toggle button & task title -->
               <div class="d-flex align-items-center">
                 <a
                   href="{% url 'task_detail' task.id %}"
-                  class="{% if task.completed %}text-decoration-line-through text-muted{% endif %} text-decoration-none"
+                  class="text-decoration-none"
                 >
                   {{ task.title }}
                 </a>
               </div>
-
-              <!-- Delete button -->
-              <form method="post" action="{% url 'delete_task' task.id %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-sm btn-danger text-white">
-                  <span class="text-white">
+              <div class="d-flex align-items-center gap-2">
+                <form method="post" action="{% url 'toggle_task' task.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-sm btn-outline-success">
+                    ✓
+                  </button>
+                </form>
+                <form method="post" action="{% url 'delete_task' task.id %}">
+                  {% csrf_token %}
+                  <button
+                    type="submit"
+                    class="btn btn-sm btn-danger text-white"
+                  >
                     {% include "todo/icons/trash.svg" %}
-                  </span>
+                  </button>
+                </form>
+              </div>
+            </li>
+            {% empty %}
+            <li class="list-group-item text-muted text-center">
+              No tasks yet.
+            </li>
+            {% endfor %}
+          </ul>
+
+          <!-- Completed Tasks -->
+          <h4>Completed Tasks</h4>
+          <ul class="list-group shadow-sm">
+            {% for task in completed_tasks %}
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center text-muted"
+            >
+              <div>
+                <s>{{ task.title }}</s>
+              </div>
+              <form method="post" action="{% url 'toggle_task' task.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Undo
                 </button>
               </form>
             </li>
             {% empty %}
-            <li class="list-group-item text-center text-muted">
-              No tasks yet.
+            <li class="list-group-item text-muted text-center">
+              No completed tasks.
             </li>
             {% endfor %}
           </ul>

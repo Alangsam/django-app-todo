@@ -21,7 +21,14 @@ def task_list(request):
             task.save()
             return redirect('task_list')
 
-    return render(request, 'todo/task_list.html', {'tasks': tasks, 'form': form})
+    incomplete_tasks = Task.objects.filter(user=request.user, completed=False).order_by('-created_at')
+    completed_tasks = Task.objects.filter(user=request.user, completed=True).order_by('-created_at')
+
+    return render(request, 'todo/task_list.html', {
+        'form': form,
+        'incomplete_tasks': incomplete_tasks,
+        'completed_tasks': completed_tasks,
+    })
 
 def toggle_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
@@ -37,6 +44,13 @@ def delete_task(request, task_id):
 def task_detail(request, task_id):
     task = get_object_or_404(Task, id=task_id, user=request.user)
     return render(request, 'todo/task_detail.html', {'task': task})
+
+@login_required
+def toggle_task_completion(request, task_id):
+    task = get_object_or_404(Task, id=task_id, user=request.user)
+    task.completed = not task.completed
+    task.save()
+    return redirect('task_list')
 
 def signup_view(request):
     if request.user.is_authenticated:

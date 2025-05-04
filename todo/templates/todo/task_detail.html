@@ -56,7 +56,21 @@
               {% endif %}
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-between">
+              <form method="post" action="{% url 'toggle_task' task.id %}">
+                <!-- prettier-ignore -->
+                {% csrf_token %} 
+                {% if task.completed %}
+                <button type="submit" class="btn btn-outline-secondary">
+                  Mark as Incomplete
+                </button>
+                {% else %}
+                <button type="submit" class="btn btn-success">
+                  Mark as Complete
+                </button>
+                {% endif %}
+              </form>
+
               <a href="/" class="btn btn-secondary">Back to List</a>
             </div>
           </div>
