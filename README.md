@@ -26,7 +26,7 @@ A simple, responsive to-do list app built with Django and Bootstrap 5.
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/Alangsam/django-app-todo.git
-cd django-todo-app
+cd django-app-todo
 python -m venv venv
 source venv/bin/activate      # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
