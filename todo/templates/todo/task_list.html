@@ -40,21 +40,23 @@
               <div class="btn-group" role="group">
                 {% for value, label in form.fields.urgency.choices %}
                 <input
-                    type="radio"
-                    class="btn-check"
-                    name="urgency"
-                    id="urgency_{{ forloop.counter }}"
-                    value="{{ value }}"
-                    {% if form.urgency.value == value %}checked{% endif %}
-                    onclick="console.log('Selected urgency:', this.value)"
-                    autocomplete="off"
+                  type="radio"
+                  class="btn-check"
+                  name="urgency"
+                  id="urgency_{{ forloop.counter }}"
+                  value="{{ value }}"
+                  {% if form.urgency.value == value %}checked{% endif %}
+                  autocomplete="off"
                 >
                 <label
-                    class="btn btn-outline-primary {% if form.urgency.value == value %}active{% endif %}"
-                    for="urgency_{{ forloop.counter }}"
+                  class="btn btn-outline-primary"
+                  for="urgency_{{ forloop.counter }}"
                 >
-                    {{ label }}
+                  {{ label }}
+                
                 </label>
+
+
                 {% endfor %}
               </div>
             </div>

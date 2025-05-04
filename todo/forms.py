@@ -20,6 +20,8 @@ class TaskForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['recurring_frequency'].required = False
 
+    
+
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(max_length=150,widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
