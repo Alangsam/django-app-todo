@@ -3,7 +3,7 @@ from .models import Task
 from .forms import TaskForm, CustomSignupForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 
 import csv
 
@@ -44,9 +44,16 @@ def delete_task(request, task_id):
     task.delete()
     return redirect('task_list')
 
+
+@login_required
 def task_detail(request, task_id):
     task = get_object_or_404(Task, id=task_id, user=request.user)
-    return render(request, 'todo/task_detail.html', {'task': task})
+
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(request, 'todo/task_detail.html', {'task': task})
+
+    return redirect('task_list')  # fallback for direct links
+
 
 @login_required
 def toggle_task_completion(request, task_id):
