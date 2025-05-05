@@ -209,9 +209,9 @@
     <script>
       document
         .getElementById("taskSearch")
-        .addEventListener("input", function () {
+        .addEventListener("keyup", function () {
           const query = this.value.toLowerCase();
-
+          console.log(query);
           document
             .querySelectorAll(".list-group-item[data-title]")
             .forEach((item) => {
