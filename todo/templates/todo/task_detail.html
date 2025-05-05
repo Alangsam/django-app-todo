@@ -22,28 +22,6 @@
       rel="stylesheet"
     />
     <style>
-      body {
-        font-family: "Roboto", sans-serif;
-      }
-
-      h1,
-      h2,
-      h3,
-      .navbar-brand {
-        font-family: "Nunito", sans-serif;
-      }
-      .bg-custom-dark {
-        background-color: #153243; /* soft light blue */
-      }
-      .text-custom-light {
-        color: #f4f9e9 !important;
-      }
-      .text-custom-dark {
-        color: #284b63 !important;
-      }
-      .bg-custom-light {
-        background-color: #eef0eb; /* soft light blue */
-      }
       .navbar-toggler-icon {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23f4f9e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
       }
@@ -64,8 +42,21 @@
         color: #284b63 !important;
       }
 
-      .bg-primary {
+      .bg-primary,
+      .btn-check,
+      .btn-check:checked + .btn,
+      .btn.active,
+      .btn.show,
+      .btn:first-child:active,
+      :not(.btn-check) + .btn:active {
         background-color: #284b63 !important;
+      }
+      .btn-check:checked + .btn,
+      .btn.active,
+      .btn.show,
+      .btn:first-child:active,
+      :not(.btn-check) + .btn:active {
+        color: #f4f9e9 !important;
       }
       .btn-outline-primary {
         color: #284b63 !important;
@@ -84,6 +75,14 @@
 
       .list-group-item a:hover {
         color: #1f3c4f;
+      }
+      .card,
+      .bg-custom-light-y,
+      .form-control {
+        background-color: #f4f9e9 !important;
+      }
+      .form-control {
+        border-color: #1f3c4f !important;
       }
     </style>
   </head>
