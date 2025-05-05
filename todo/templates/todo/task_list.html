@@ -30,25 +30,24 @@
 
         <!-- Collapsible content -->
         <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto align-items-center gap-2 flex-row">
             {% if user.is_authenticated %}
-            <li class="nav-item text-center text-md-end w-100">
-              <form
-                method="post"
-                action="{% url 'logout' %}"
-                class="d-inline-block"
-              >
+            <li class="nav-item">
+              <a href="{% url 'export_tasks_csv' %}" class="btn btn-outline-secondary">
+                Export CSV
+              </a>
+            </li>
+            <li class="nav-item">
+              <form method="post" action="{% url 'logout' %}" class="d-inline-block">
                 {% csrf_token %}
-                <button
-                  type="submit"
-                  class="btn btn-outline-danger w-100 w-md-auto"
-                >
+                <button type="submit" class="btn btn-outline-danger">
                   Logout
                 </button>
               </form>
             </li>
             {% endif %}
           </ul>
+
         </div>
       </div>
     </nav>
