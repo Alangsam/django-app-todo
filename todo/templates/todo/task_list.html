@@ -37,10 +37,18 @@
       .navbar-brand {
         font-family: "Nunito", sans-serif;
       }
+      .bg-custom-dark {
+        background-color: #514663; /* soft light blue */
+      }
+      .bg-custom-light {
+        background-color: #cacf85; /* soft light blue */
+      }
     </style>
   </head>
-  <body class="bg-light">
-    <nav class="navbar navbar-expand-md bg-white border-bottom shadow-sm mb-4">
+  <body class="bg-custom-light">
+    <nav
+      class="navbar navbar-expand-md bg-custom-dark border-bottom shadow-sm mb-4"
+    >
       <div class="container">
         <a class="navbar-brand" href="#"
           ><h1 class="p-0">{{ user.username }}'s To-Do</h1></a
