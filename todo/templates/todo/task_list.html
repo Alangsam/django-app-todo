@@ -54,6 +54,26 @@
       .navbar-toggler-icon {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23f4f9e9' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
       }
+      .btn-primary,
+      .btn-primary:active,
+      .btn-primary:visited,
+      .btn-primary:focus {
+        background-color: #284b63 !important;
+        border-color: #284b63 !important;
+      }
+
+      .btn-primary:hover {
+        background-color: #1f3c4f !important;
+        border-color: #1f3c4f !important;
+      }
+
+      .text-primary {
+        color: #284b63 !important;
+      }
+
+      .bg-primary {
+        background-color: #284b63 !important;
+      }
     </style>
   </head>
   <body class="bg-custom-light">
@@ -175,7 +195,7 @@
           </div>
 
           <!-- Incomplete Tasks -->
-          <h4 class="mt-4">Incomplete Tasks</h4>
+          <h3 class="mt-4 text-custom-dark">Incomplete Tasks</h3>
           <ul class="list-group shadow-sm mb-5">
             {% for task in incomplete_tasks %}
             <li
@@ -216,7 +236,7 @@
           </ul>
 
           <!-- Completed Tasks -->
-          <h4>Completed Tasks</h4>
+          <h3 class="text-custom-dark">Completed Tasks</h3>
           <ul class="list-group shadow-sm">
             {% for task in completed_tasks %}
             <li
