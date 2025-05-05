@@ -235,7 +235,7 @@
           <ul class="list-group shadow-sm mb-5 bg-custom-light-y">
             {% for task in incomplete_tasks %}
             <li
-              class="list-group-item d-flex justify-content-between align-items-center"
+              class="list-group-item d-flex justify-content-between align-items-center bg-custom-light-y"
               data-title="{{ task.title|lower }}"
             >
               <div class="d-flex align-items-center">
@@ -276,7 +276,7 @@
           <ul class="list-group shadow-sm bg-custom-light-y">
             {% for task in completed_tasks %}
             <li
-              class="list-group-item d-flex justify-content-between align-items-center text-muted"
+              class="list-group-item d-flex justify-content-between align-items-center text-muted bg-custom-light-y"
               data-title="{{ task.title|lower }}"
             >
               <div>
