@@ -105,7 +105,9 @@
       .list-group-item a:hover {
         color: #1f3c4f;
       }
-      .card {
+      .card,
+      .bg-custom-light-y,
+      .form-control {
         background-color: #f4f9e9 !important;
       }
     </style>
@@ -230,7 +232,7 @@
 
           <!-- Incomplete Tasks -->
           <h3 class="mt-4 text-custom-dark">Incomplete Tasks</h3>
-          <ul class="list-group shadow-sm mb-5">
+          <ul class="list-group shadow-sm mb-5 bg-custom-light-y">
             {% for task in incomplete_tasks %}
             <li
               class="list-group-item d-flex justify-content-between align-items-center"
@@ -271,7 +273,7 @@
 
           <!-- Completed Tasks -->
           <h3 class="text-custom-dark">Completed Tasks</h3>
-          <ul class="list-group shadow-sm">
+          <ul class="list-group shadow-sm bg-custom-light-y">
             {% for task in completed_tasks %}
             <li
               class="list-group-item d-flex justify-content-between align-items-center text-muted"
@@ -282,7 +284,7 @@
               </div>
               <form method="post" action="{% url 'toggle_task' task.id %}">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                <button type="submit" class="btn btn-sm btn-outline-primary">
                   Undo
                 </button>
               </form>
