@@ -42,7 +42,9 @@
   <body class="bg-light">
     <nav class="navbar navbar-expand-md bg-white border-bottom shadow-sm mb-4">
       <div class="container">
-        <a class="navbar-brand" href="#"> {{ user.username }}'s To-Do </a>
+        <a class="navbar-brand" href="#"
+          ><h1>{{ user.username }}'s To-Do</h1></a
+        >
 
         <!-- Hamburger toggle button -->
         <button
@@ -92,7 +94,10 @@
       <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-8 col-lg-6">
           <!-- Task Form -->
-          <form method="post" class="mb-4 card p-3 shadow-sm outline-dark">
+          <form
+            method="post"
+            class="mb-4 card p-3 shadow-sm outline-dark text-center"
+          >
             {% csrf_token %}
 
             <div class="mb-3">{{ form.title }}</div>
