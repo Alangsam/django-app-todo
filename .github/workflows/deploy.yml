@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.PI_USER }}
           key: ${{ secrets.PI_SSH_KEY }}
           script: |
-            cd /home/pi/myproject
+            cd /home/alex/Projects/django-app-todo
             git pull
             docker compose down
             docker compose build
