@@ -82,16 +82,19 @@ WSGI_APPLICATION = 'todo_project.wsgi.application'
 #     }
 # }
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'yourpassword',
-        'HOST': 'db',  # or 'db' if using Docker
-        'PORT': '8000',
+        'NAME': os.environ.get('DB_NAME', 'myproject'),
+        'USER': os.environ.get('DB_USER', 'myprojectuser'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'mypassword'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
+
 
 
 

@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: myproject
+      POSTGRES_USER: myprojectuser
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: gunicorn project.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DEBUG=1
+      - DJANGO_SECRET_KEY=yoursecret
+      - DB_NAME=myproject
+      - DB_USER=myprojectuser
+      - DB_PASSWORD=mypassword
+      - DB_HOST=db
+      - DB_PORT=5432
+
+volumes:
+  postgres_data:
