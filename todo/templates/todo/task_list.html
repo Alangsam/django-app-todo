@@ -39,7 +39,7 @@
             class="navbar-nav ms-auto align-items-center gap-2 flex-md-row flex-column text-center"
           >
             {% if user.is_authenticated %}
-            <li class="nav-item d-flex align-items-center mb-2">
+            <li class="nav-item d-flex align-items-center my-2">
               <a
                 href="{% url 'export_tasks_csv' %}"
                 class="btn btn-outline-secondary w-100 w-md-auto"
@@ -48,7 +48,7 @@
               </a>
             </li>
             <li class="nav-item d-flex align-items-center">
-              <form method="post" action="{% url 'logout' %}" class="mb-2">
+              <form method="post" action="{% url 'logout' %}" class="my-2">
                 {% csrf_token %}
                 <button
                   type="submit"
