@@ -3,6 +3,9 @@ from .models import Task
 from .forms import TaskForm, CustomSignupForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+
+import csv
 
 # def home_redirect(request):
 #     if request.user.is_authenticated:
@@ -65,3 +68,24 @@ def signup_view(request):
         form = CustomSignupForm()
     
     return render(request, 'registration/signup.html', {'form': form})
+
+@login_required
+def export_tasks_csv(request):
+    tasks = Task.objects.filter(user=request.user)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="tasks.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Title', 'Urgency', 'Recurring', 'Frequency', 'Completed', 'Created At'])
+
+    for task in tasks:
+        writer.writerow([
+            task.title,
+            task.get_urgency_display(),
+            "Yes" if task.is_recurring else "No",
+            task.recurring_frequency or "",
+            "Yes" if task.completed else "No",
+            task.created_at.strftime("%Y-%m-%d %H:%M"),
+        ])
+
+    return response
